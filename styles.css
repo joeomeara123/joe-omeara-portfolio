@@ -96,7 +96,7 @@ body {
 
 .gradient-header {
     width: 600px;
-    height: 80px;
+    height: 40px;
     background: linear-gradient(90deg, #FF8A65 0%, #E0E0E0 100%);
     border-radius: 20px;
 }

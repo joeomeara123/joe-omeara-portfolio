@@ -25,15 +25,15 @@
         <header class="gradient-header"></header>
     </div>
     <div class="container">
-        <h1 id="hyperText" class="hyper-text">Joe O'Meara</h1>
+        <h1 id="hyperText" class="hyper-text" style="font-size: 18px !important;">Joe O'Meara</h1>
         
-        <p>I handle Growth & Brand at Palindrom. I help companies implement AI safely and reliably.</p>
+        <p class="blurred-stagger" style="font-size: 14px !important;">I handle Growth & Brand at Palindrom. I help companies implement AI safely and reliably.</p>
         
-        <p>I was born and raised in Amsterdam and moved to London at age 10, where early exposure to advertising and technology sparked a fascination with human decision-making and how markets shape behaviour. This interest led me to study Economics at the University of Bristol to better understand these dynamics. After graduating, I avoided the traditional path most economics graduates take and instead pursued venture capital and startups, attracted by the ability to create outsized impact early in one's career. Since then, I've worked across VC funds, startups, and venture builders, and I'm now scaling Palindrom. Throughout this journey, I've been drawn to companies aiming to create positive impact for humanity.</p>
+        <p class="blurred-stagger" style="font-size: 14px !important;">I was born and raised in Amsterdam and moved to London at age 10, where early exposure to advertising and technology sparked a fascination with human decision-making and how markets shape behaviour. This interest led me to study Economics at the University of Bristol to better understand these dynamics. After graduating, I avoided the traditional path most economics graduates take and instead pursued venture capital and startups, attracted by the ability to create outsized impact early in one's career. Since then, I've worked across VC funds, startups, and venture builders, and I'm now scaling Palindrom. Throughout this journey, I've been drawn to companies aiming to create positive impact for humanity.</p>
         
-        <p>In my free time, I enjoy [hobbies and interests]. I'm always learning new technologies and working on side projects.</p>
+        <p style="font-size: 14px !important;">In my free time, I enjoy [hobbies and interests]. I'm always learning new technologies and working on side projects.</p>
         
-        <p>I'm currently working on several projects including AutoGenLib, a Python library for dynamic code generation, and various web applications.</p>
+        <p style="font-size: 14px !important;">I'm currently working on several projects including AutoGenLib, a Python library for dynamic code generation, and various web applications.</p>
         
         <div class="links">
             <a href="mailto:joe@example.com">Email</a><br>
@@ -196,6 +196,42 @@
                 } : null;
             }
         }
+        
+        // Text Reveal Animation using CSS clip-path
+        class TextReveal {
+            constructor(elements, options = {}) {
+                console.log('TextReveal constructor called with:', elements);
+                this.elements = elements.length ? Array.from(elements) : [elements];
+                console.log('Converted to array:', this.elements.length, 'elements');
+                this.delay = options.delay || 0;
+                this.staggerDelay = options.staggerDelay || 200;
+                this.init();
+            }
+            
+            init() {
+                console.log('Init called, processing', this.elements.length, 'elements');
+                
+                this.elements.forEach((element, elemIndex) => {
+                    const text = element.textContent || '';
+                    console.log('Processing element', elemIndex, 'with text length:', text.length);
+                    
+                    if (text.length === 0) {
+                        console.log('Skipping element with no text');
+                        return;
+                    }
+                    
+                    // Add container and text reveal classes
+                    element.classList.add('text-reveal-container');
+                    element.innerHTML = `<span class="text-reveal">${text}</span>`;
+                    
+                    // Set animation delay for staggered effect
+                    const revealSpan = element.querySelector('.text-reveal');
+                    revealSpan.style.animationDelay = `${this.delay + (elemIndex * this.staggerDelay)}ms`;
+                    
+                    console.log('Applied text reveal to element', elemIndex, 'with delay:', this.delay + (elemIndex * this.staggerDelay));
+                });
+            }
+        }
 
         // Initialize HyperText on the name
         document.addEventListener('DOMContentLoaded', function() {
@@ -212,6 +248,30 @@
             const gradientElement = document.querySelector('.gradient-header');
             if (gradientElement) {
                 new GradientAnimator(gradientElement);
+            }
+            
+            // Try selecting paragraphs directly
+            const textRevealElements = document.querySelectorAll('p.blurred-stagger');
+            console.log('Found elements:', textRevealElements.length);
+            
+            textRevealElements.forEach((el, i) => {
+                console.log(`Element ${i}:`, el);
+                console.log(`Element ${i} text:`, el.textContent);
+                console.log(`Element ${i} innerHTML:`, el.innerHTML);
+            });
+            
+            if (textRevealElements.length > 0) {
+                console.log('Starting TextReveal animation');
+                try {
+                    new TextReveal(textRevealElements, {
+                        delay: 500,
+                        staggerDelay: 200
+                    });
+                } catch (error) {
+                    console.error('TextReveal error:', error);
+                }
+            } else {
+                console.log('No blurred-stagger elements found');
             }
         });
     </script>

@@ -99,6 +99,7 @@ body {
     height: 40px;
     background: linear-gradient(90deg, #FF8A65 0%, #E0E0E0 100%);
     border-radius: 20px;
+    transition: background 0.5s ease;
 }
 
 .container {
@@ -113,6 +114,13 @@ h1 {
     margin: 0 0 30px 0;
     color: var(--text-color);
     transition: color 0.3s ease;
+}
+
+.hyper-text {
+    font-family: 'Inter', monospace;
+    cursor: default;
+    user-select: none;
+    letter-spacing: 0.02em;
 }
 
 p {

@@ -24,22 +24,29 @@
         </div>
         <header class="gradient-header"></header>
     </div>
-    <div class="container">
-        <h1 id="hyperText" class="hyper-text" style="font-size: 18px !important;">Joe O'Meara</h1>
+    <div id="mainContent" class="container">
+        <!-- Loader positioned where name will be -->
+        <div id="loader" class="loader-name-position">
+            <div id="loaderPercentage" class="loader-percentage">0%</div>
+        </div>
         
-        <p class="blurred-stagger" style="font-size: 14px !important;">I handle Growth & Brand at Palindrom. I help companies implement AI safely and reliably.</p>
+        <h1 id="hyperText" class="hyper-text" style="font-size: 18px !important; opacity: 0;">Joe O'Meara</h1>
         
-        <p class="blurred-stagger" style="font-size: 14px !important;">I was born and raised in Amsterdam and moved to London at age 10, where early exposure to advertising and technology sparked a fascination with human decision-making and how markets shape behaviour. This interest led me to study Economics at the University of Bristol to better understand these dynamics. After graduating, I avoided the traditional path most economics graduates take and instead pursued venture capital and startups, attracted by the ability to create outsized impact early in one's career. Since then, I've worked across VC funds, startups, and venture builders, and I'm now scaling Palindrom. Throughout this journey, I've been drawn to companies aiming to create positive impact for humanity.</p>
-        
-        <p style="font-size: 14px !important;">In my free time, I enjoy [hobbies and interests]. I'm always learning new technologies and working on side projects.</p>
-        
-        <p style="font-size: 14px !important;">I'm currently working on several projects including AutoGenLib, a Python library for dynamic code generation, and various web applications.</p>
-        
-        <div class="links">
-            <a href="mailto:joe@example.com">Email</a><br>
-            <a href="https://twitter.com/joeomeara" target="_blank">Twitter</a><br>
-            <a href="https://linkedin.com/in/joeomeara" target="_blank">LinkedIn</a><br>
-            <a href="https://github.com/joeomeara" target="_blank">GitHub</a>
+        <div id="bodyContent" style="opacity: 0;">
+            <p class="blurred-stagger" style="font-size: 12px !important;">I handle Growth & Brand at Palindrom. I help companies implement AI safely and reliably.</p>
+            
+            <p class="blurred-stagger" style="font-size: 12px !important;">I was born and raised in Amsterdam and moved to London at age 10, where early exposure to advertising and technology sparked a fascination with human decision-making and how markets shape behaviour. This interest led me to study Economics at the University of Bristol to better understand these dynamics. After graduating, I avoided the traditional path most economics graduates take and instead pursued venture capital and startups, attracted by the ability to create outsized impact early in one's career. Since then, I've worked across VC funds, startups, and venture builders, and I'm now scaling Palindrom. Throughout this journey, I've been drawn to companies aiming to create positive impact for humanity.</p>
+            
+            <p style="font-size: 12px !important;">In my free time, I enjoy [hobbies and interests]. I'm always learning new technologies and working on side projects.</p>
+            
+            <p style="font-size: 12px !important;">I'm currently working on several projects including AutoGenLib, a Python library for dynamic code generation, and various web applications.</p>
+            
+            <div class="links">
+                <a href="mailto:joe@example.com">Email</a><br>
+                <a href="https://twitter.com/joeomeara" target="_blank">Twitter</a><br>
+                <a href="https://linkedin.com/in/joeomeara" target="_blank">LinkedIn</a><br>
+                <a href="https://github.com/joeomeara" target="_blank">GitHub</a>
+            </div>
         </div>
     </div>
     
@@ -233,16 +240,98 @@
             }
         }
 
-        // Initialize HyperText on the name
-        document.addEventListener('DOMContentLoaded', function() {
+        // Percentage Loader Animation
+        function animateLoader() {
+            const percentageElement = document.querySelector('.loader-percentage');
+            const loader = document.querySelector('.loader-name-position');
+            
+            let currentPercentage = 0;
+            const struggleStartAt = 85;
+            const targetPercentage = 100;
+            const initialDuration = 1800; // 1.8 seconds to reach 85%
+            const increment = struggleStartAt / (initialDuration / 16); // 60fps
+            let inStruggleMode = false;
+            let strugglePercentage = struggleStartAt;
+            
+            // Timing for struggle phase (85% to 100%)
+            const struggleDelays = [300, 250, 200, 180, 150, 120, 100, 80, 60, 50, 40, 30, 25, 20, 15]; // 15 steps from 85% to 100%
+            let struggleStep = 0;
+            
+            function updateCounter() {
+                if (!inStruggleMode) {
+                    currentPercentage += increment;
+                    
+                    // Start struggle mode at 85%
+                    if (currentPercentage >= struggleStartAt) {
+                        currentPercentage = struggleStartAt;
+                        inStruggleMode = true;
+                        startStruggleMode();
+                        return;
+                    }
+                } else {
+                    // Struggle mode is handled by setTimeout chain
+                    return;
+                }
+                
+                // Update percentage display
+                percentageElement.textContent = Math.floor(currentPercentage) + '%';
+                
+                if (currentPercentage < struggleStartAt) {
+                    requestAnimationFrame(updateCounter);
+                }
+            }
+            
+            function startStruggleMode() {
+                function incrementStruggle() {
+                    if (strugglePercentage < targetPercentage) {
+                        strugglePercentage++;
+                        percentageElement.textContent = strugglePercentage + '%';
+                        
+                        // Get delay for next increment (starts slow, gets faster)
+                        const delay = struggleDelays[struggleStep] || 20;
+                        struggleStep++;
+                        
+                        setTimeout(incrementStruggle, delay);
+                    } else {
+                        // Completed! Start text reveal
+                        setTimeout(() => {
+                            loader.style.opacity = '0';
+                            startTextReveal();
+                        }, 300);
+                    }
+                }
+                
+                // Start the struggle sequence
+                setTimeout(incrementStruggle, 200);
+            }
+            
+            requestAnimationFrame(updateCounter);
+        }
+
+        // Function to start text reveal animations
+        function startTextReveal() {
+            // Show the name
             const hyperTextElement = document.getElementById('hyperText');
             if (hyperTextElement) {
+                hyperTextElement.style.transition = 'opacity 0.5s ease';
+                hyperTextElement.style.opacity = '1';
+                
+                // Initialize HyperText animation
                 new HyperText(hyperTextElement, {
                     duration: 1000,
-                    delay: 500,
+                    delay: 200,
                     animateOnHover: true
                 });
             }
+            
+            // Show body content after name appears
+            setTimeout(() => {
+                const bodyContent = document.getElementById('bodyContent');
+                if (bodyContent) {
+                    bodyContent.style.transition = 'opacity 0.5s ease';
+                    bodyContent.style.opacity = '1';
+                }
+            }, 500);
             
             // Initialize gradient animation
             const gradientElement = document.querySelector('.gradient-header');
@@ -250,30 +339,18 @@
                 new GradientAnimator(gradientElement);
             }
             
-            // Try selecting paragraphs directly
+            // Initialize text reveal animation
             const textRevealElements = document.querySelectorAll('p.blurred-stagger');
-            console.log('Found elements:', textRevealElements.length);
-            
-            textRevealElements.forEach((el, i) => {
-                console.log(`Element ${i}:`, el);
-                console.log(`Element ${i} text:`, el.textContent);
-                console.log(`Element ${i} innerHTML:`, el.innerHTML);
-            });
-            
             if (textRevealElements.length > 0) {
-                console.log('Starting TextReveal animation');
-                try {
-                    new TextReveal(textRevealElements, {
-                        delay: 500,
-                        staggerDelay: 200
-                    });
-                } catch (error) {
-                    console.error('TextReveal error:', error);
-                }
-            } else {
-                console.log('No blurred-stagger elements found');
+                new TextReveal(textRevealElements, {
+                    delay: 1300,
+                    staggerDelay: 200
+                });
             }
-        });
+        }
+
+        // Start loading animation when page loads
+        window.addEventListener('load', animateLoader);
     </script>
 </body>
 </html>

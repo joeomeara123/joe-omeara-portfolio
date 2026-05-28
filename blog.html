@@ -35,6 +35,11 @@
             <!-- newest entries prepended above this line -->
 
             <article class="blog-entry">
+                <div class="blog-date">2026-05-28 — four-source coverage</div>
+                <p class="blog-body">OnTheMarket scraper done — another 36 listings via __NEXT_DATA__ + anchor-title parsing. All four portals now feed the same Supabase table: 30 from Rightmove, 20 OpenRent, 13 Zoopla, 36 OnTheMarket. Real surface area for a real flat hunt. Next: cross-source dedup so the same flat doesn't ping me four times.</p>
+            </article>
+
+            <article class="blog-entry">
                 <div class="blog-date">2026-05-28 — Zoopla cracked</div>
                 <p class="blog-body">Zoopla sits behind Cloudflare and ships listings as React Server Components — the JSON is double-string-encoded inside the 40th of 42 self.__next_f.push calls. A session warm-up on the homepage gets a clearance cookie; from there it's just unwrap, raw_decode, normalise. 13 more listings in.</p>
             </article>

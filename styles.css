@@ -178,11 +178,37 @@ p {
     text-decoration: underline;
 }
 
+.blog-feed {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.blog-entry {
+    border-top: 1px solid var(--toggle-border);
+    padding-top: 16px;
+}
+
+.blog-date {
+    font-size: 11px !important;
+    color: var(--toggle-icon);
+    letter-spacing: 0.04em;
+    margin-bottom: 6px;
+}
+
+.blog-body {
+    font-size: 12px !important;
+    line-height: 1.6;
+    margin: 0;
+    color: var(--text-color);
+}
+
 @media (max-width: 480px) {
     .container {
         padding: 40px 20px;
     }
-    
+
     h1 {
         font-size: 22px;
     }

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joe O'Meara — Build log</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="header-section">
+        <div class="theme-toggle" id="themeToggle">
+            <div class="toggle-slider">
+                <svg class="toggle-icon moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+                <svg class="toggle-icon sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path>
+                </svg>
+            </div>
+        </div>
+        <header class="gradient-header"></header>
+    </div>
+    <div class="container">
+        <h1 class="hyper-text" style="font-size: 18px !important;">Build log</h1>
+
+        <p style="font-size: 12px !important;">
+            Short notes on what I'm making, in public. <a href="index.html">&larr; back</a>
+        </p>
+
+        <div class="blog-feed">
+            <!-- newest entries prepended above this line -->
+
+            <article class="blog-entry">
+                <div class="blog-date">2026-05-28</div>
+                <p class="blog-body">Started Phase 0 of an AI property-alert side project for my flat hunt. Set up the private repo, drafted a tenant one-pager, an estate-agent call script, and an account-setup runbook. Next: actually call the agents, turn on portal alerts.</p>
+            </article>
+
+        </div>
+    </div>
+
+    <script>
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        body.setAttribute('data-theme', currentTheme);
+
+        themeToggle.addEventListener('click', function() {
+            const currentTheme = body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+    </script>
+</body>
+</html>

@@ -35,6 +35,11 @@
             <!-- newest entries prepended above this line -->
 
             <article class="blog-entry">
+                <div class="blog-date">2026-05-28 — cross-portal dedup</div>
+                <p class="blog-body">Same flat keeps appearing on Rightmove, Zoopla, OnTheMarket — Fulham High Street showed up three times. Composite key: postcode + bedrooms + price ±£100 + normalised street name. 99 rows collapsed to 71 unique flats. 28 fewer false alerts.</p>
+            </article>
+
+            <article class="blog-entry">
                 <div class="blog-date">2026-05-28 — four-source coverage</div>
                 <p class="blog-body">OnTheMarket scraper done — another 36 listings via __NEXT_DATA__ + anchor-title parsing. All four portals now feed the same Supabase table: 30 from Rightmove, 20 OpenRent, 13 Zoopla, 36 OnTheMarket. Real surface area for a real flat hunt. Next: cross-source dedup so the same flat doesn't ping me four times.</p>
             </article>

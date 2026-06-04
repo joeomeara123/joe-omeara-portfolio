@@ -31,70 +31,72 @@
             Short notes on what I'm making, in public. <a href="index.html">&larr; back</a>
         </p>
 
+        <div class="blog-filters" id="blogFilters"></div>
+
         <div class="blog-feed">
             <!-- newest entries prepended above this line -->
 
-            <article class="blog-entry">
+            <article class="blog-entry" data-project="AI Course">
                 <div class="blog-date">2026-06-04 — built my own AI course</div>
                 <p class="blog-body">Best way to learn something is to build the thing that teaches it. So I made my own course on modern LLM engineering — one self-contained HTML file, fully offline, 84 topics from tokens and attention through fine-tuning, RAG and agents. Each topic is a guided stepper: a nutshell, a plain-English lesson, a hand-drawn diagram, a practice exercise, and a quiz that marks it done when you pass. The interesting bit isn't the content — it's how it was made: a fan-out of writing agents drafted the 84 lessons, then a second wave of agents re-solved every quiz to check the answer keys were actually right. GSAP's inlined so it animates with zero network calls. Code's public: <a href="https://github.com/joeomeara123/personal-ai-course" target="_blank" rel="noopener">github.com/joeomeara123/personal-ai-course</a>.</p>
             </article>
 
-            <article class="blog-entry">
+            <article class="blog-entry" data-project="Flat Finder">
                 <div class="blog-date">2026-05-28 — Railway live, Zoopla off</div>
                 <p class="blog-body">Bot deployed to Railway with a Dockerfile (Nixpacks' uv builder is broken). Three of four scrapers run cleanly from the cloud; Zoopla disabled because Cloudflare blocks Railway IPs. Falling back to Zoopla's own email alerts for that 5%. Health DM cleaned up so URLs don't auto-link into walls of blue.</p>
             </article>
 
-            <article class="blog-entry">
+            <article class="blog-entry" data-project="Flat Finder">
                 <div class="blog-date">2026-05-28 — interactive alerts</div>
                 <p class="blog-body">Alerts now arrive as photos with Star / Like / Pass buttons. Tap → goes to a user_actions table. A /favourites command in the bot returns the list. The like and pass signals sit there waiting for the AI scoring layer to learn from later. Also fixed a Rightmove weekly-vs-pcm bug that was pricing a 2-bed at £507.</p>
             </article>
 
-            <article class="blog-entry">
+            <article class="blog-entry" data-project="Flat Finder">
                 <div class="blog-date">2026-05-28 — end of day</div>
                 <p class="blog-body">From zero to working flat-hunting bot in a day: 4 portal scrapers, 71 unique SW6 flats in the DB, cross-source dedup, Telegram alerts, a 10-min scheduler, health checks. The interesting bit isn't the code — it's that real inventory only shows up in late July for September. The system is ready to wait.</p>
             </article>
 
-            <article class="blog-entry">
+            <article class="blog-entry" data-project="Flat Finder">
                 <div class="blog-date">2026-05-28 — autonomous</div>
                 <p class="blog-body">run_all.py + scheduler.py + health check are live. One command runs all four scrapers in sequence; the scheduler loops every 10 min; the health check DMs me if any source goes silent &gt;2h or returns an error. The bot is now genuinely autonomous.</p>
             </article>
 
-            <article class="blog-entry">
+            <article class="blog-entry" data-project="Flat Finder">
                 <div class="blog-date">2026-05-28 — cross-portal dedup</div>
                 <p class="blog-body">Same flat keeps appearing on Rightmove, Zoopla, OnTheMarket — Fulham High Street showed up three times. Composite key: postcode + bedrooms + price ±£100 + normalised street name. 99 rows collapsed to 71 unique flats. 28 fewer false alerts.</p>
             </article>
 
-            <article class="blog-entry">
+            <article class="blog-entry" data-project="Flat Finder">
                 <div class="blog-date">2026-05-28 — four-source coverage</div>
                 <p class="blog-body">OnTheMarket scraper done — another 36 listings via __NEXT_DATA__ + anchor-title parsing. All four portals now feed the same Supabase table: 30 from Rightmove, 20 OpenRent, 13 Zoopla, 36 OnTheMarket. Real surface area for a real flat hunt. Next: cross-source dedup so the same flat doesn't ping me four times.</p>
             </article>
 
-            <article class="blog-entry">
+            <article class="blog-entry" data-project="Flat Finder">
                 <div class="blog-date">2026-05-28 — Zoopla cracked</div>
                 <p class="blog-body">Zoopla sits behind Cloudflare and ships listings as React Server Components — the JSON is double-string-encoded inside the 40th of 42 self.__next_f.push calls. A session warm-up on the homepage gets a clearance cookie; from there it's just unwrap, raw_decode, normalise. 13 more listings in.</p>
             </article>
 
-            <article class="blog-entry">
+            <article class="blog-entry" data-project="Flat Finder">
                 <div class="blog-date">2026-05-28 — later still</div>
                 <p class="blog-body">OpenRent scraper live. No JSON blob to lean on this time — just HTML cards parsed with BeautifulSoup. Pulled in another 20 listings, this time from private landlords skipping agent fees. Refactored the runner so adding the next two sources is a 30-line file each.</p>
             </article>
 
-            <article class="blog-entry">
+            <article class="blog-entry" data-project="Flat Finder">
                 <div class="blog-date">2026-05-28 — late</div>
                 <p class="blog-body">Rightmove scraper working. Pulls the embedded JSON from search-result pages (no headless browser needed), normalises 30 live SW6 listings into Supabase, and sends a formatted Telegram alert for anything new. 48h alert window so the first run doesn't blow up my phone.</p>
             </article>
 
-            <article class="blog-entry">
+            <article class="blog-entry" data-project="Flat Finder">
                 <div class="blog-date">2026-05-28 — evening</div>
                 <p class="blog-body">Bootstrapped the Python project for the flat-finder bot. uv + supabase + anthropic + telegram via requests. Smoke test passes end-to-end: writes to the database, reads back, DMs my phone. Foundation laid; next session is the actual Rightmove scraper.</p>
             </article>
 
-            <article class="blog-entry">
+            <article class="blog-entry" data-project="Flat Finder">
                 <div class="blog-date">2026-05-28 — later</div>
                 <p class="blog-body">Dug into the Renters' Rights Act 2025, in force since 1 May. Bidding wars are now banned and rent-in-advance is capped at one month. The practical effect: speed-to-enquiry beats money, which makes the AI alert system more valuable, not less. Building accordingly.</p>
             </article>
 
-            <article class="blog-entry">
+            <article class="blog-entry" data-project="Flat Finder">
                 <div class="blog-date">2026-05-28</div>
                 <p class="blog-body">Started Phase 0 of an AI property-alert side project for my flat hunt. Set up the private repo, drafted a tenant one-pager, an estate-agent call script, and an account-setup runbook. Next: actually call the agents, turn on portal alerts.</p>
             </article>
@@ -115,6 +117,55 @@
             body.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
         });
+
+        // Group / filter the build log by project (auto-built from each entry's data-project)
+        (function () {
+            const feed = document.querySelector('.blog-feed');
+            const bar = document.getElementById('blogFilters');
+            if (!feed || !bar) return;
+            const entries = Array.from(feed.querySelectorAll('.blog-entry'));
+            const projects = [];
+            entries.forEach(function (e) {
+                const p = e.getAttribute('data-project');
+                if (!p) return;
+                let rec = projects.find(function (x) { return x.name === p; });
+                if (!rec) { rec = { name: p, count: 0 }; projects.push(rec); }
+                rec.count++;
+                if (!e.querySelector('.project-chip')) {
+                    const chip = document.createElement('span');
+                    chip.className = 'project-chip';
+                    chip.textContent = p;
+                    const date = e.querySelector('.blog-date');
+                    if (date) date.appendChild(chip);
+                }
+            });
+            if (!projects.length) return;
+            function makeBtn(label, val, count) {
+                const b = document.createElement('button');
+                b.className = 'blog-filter';
+                b.dataset.filter = val;
+                b.innerHTML = label + ' <span class="cnt">' + count + '</span>';
+                return b;
+            }
+            bar.appendChild(makeBtn('All', '__all__', entries.length));
+            projects.forEach(function (p) { bar.appendChild(makeBtn(p.name, p.name, p.count)); });
+            function apply(val) {
+                Array.from(bar.children).forEach(function (b) { b.classList.toggle('active', b.dataset.filter === val); });
+                entries.forEach(function (e) {
+                    const p = e.getAttribute('data-project');
+                    e.hidden = !(val === '__all__' || p === val);
+                });
+                try { localStorage.setItem('blogFilter', val); } catch (err) {}
+            }
+            bar.addEventListener('click', function (ev) {
+                const b = ev.target.closest('.blog-filter');
+                if (b) apply(b.dataset.filter);
+            });
+            let saved = '__all__';
+            try { saved = localStorage.getItem('blogFilter') || '__all__'; } catch (err) {}
+            const ok = saved === '__all__' || projects.some(function (p) { return p.name === saved; });
+            apply(ok ? saved : '__all__');
+        })();
     </script>
 </body>
 </html>

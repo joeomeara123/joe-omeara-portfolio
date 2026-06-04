@@ -178,8 +178,60 @@ p {
     text-decoration: underline;
 }
 
+.blog-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 24px 0 2px 0;
+}
+
+.blog-filter {
+    font-family: inherit;
+    font-size: 11px !important;
+    letter-spacing: 0.04em;
+    color: var(--toggle-icon);
+    background: transparent;
+    border: 1px solid var(--toggle-border);
+    border-radius: 999px;
+    padding: 5px 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.blog-filter:hover {
+    color: var(--text-color);
+    border-color: var(--text-color);
+}
+
+.blog-filter.active {
+    color: var(--bg-color);
+    background: var(--text-color);
+    border-color: var(--text-color);
+}
+
+.blog-filter .cnt {
+    opacity: 0.5;
+    margin-left: 5px;
+}
+
+.project-chip {
+    display: inline-block;
+    font-size: 10px !important;
+    letter-spacing: 0.04em;
+    color: var(--toggle-icon);
+    border: 1px solid var(--toggle-border);
+    border-radius: 999px;
+    padding: 1px 8px;
+    margin-left: 8px;
+    vertical-align: middle;
+}
+
+.blog-entry[hidden] {
+    display: none;
+}
+
 .blog-feed {
-    margin-top: 30px;
+    margin-top: 20px;
     display: flex;
     flex-direction: column;
     gap: 24px;

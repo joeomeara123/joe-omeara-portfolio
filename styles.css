@@ -178,6 +178,60 @@ p {
     text-decoration: underline;
 }
 
+.projects {
+    margin-top: 36px;
+}
+
+.projects-heading {
+    font-size: 12px !important;
+    font-weight: 600;
+    margin: 0 0 4px 0;
+}
+
+.project-group {
+    margin-top: 18px;
+}
+
+.project-group-label {
+    font-size: 10px !important;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--toggle-icon);
+    margin-bottom: 8px;
+}
+
+.project-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.project-list li {
+    font-size: 12px !important;
+    line-height: 1.5;
+}
+
+.project-list a {
+    color: var(--link-color);
+    text-decoration: none;
+}
+
+.project-list a:hover {
+    text-decoration: underline;
+}
+
+.project-name {
+    color: var(--text-color);
+}
+
+.project-note {
+    color: var(--toggle-icon);
+    margin-left: 6px;
+}
+
 .blog-filters {
     display: flex;
     flex-wrap: wrap;
